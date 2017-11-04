@@ -1,0 +1,50 @@
+{
+  "name": "token-based-authentication",
+  "version": "1.0.0",
+  "description": "A Node token based authentication REST API",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "authentication",
+    "token"
+  ],
+  "author": "Alexander Gontcharov",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-htmlhint": "^1.0.0",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.4",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1"
+  },
+  "jshintConfig": {
+    "eqeqeq": true,
+    "strict": "global",
+    "validthis": true,
+    "esversion": 6,
+    "jasmine": true,
+    "node": true,
+    "predef": [
+      "inject",
+      "protractor",
+      "browser",
+      "by",
+      "element",
+      "it",
+      "describe",
+      "beforeEach",
+      "afterEach"
+    ]
+  }
+}
