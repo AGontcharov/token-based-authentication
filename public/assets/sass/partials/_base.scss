@@ -1,0 +1,32 @@
+// Base font
+$font-primary: Arial, Helvetica, sans-serif;
+$font-primary-size: 16px;
+
+// Base header
+$h1-font-size: 32px;
+$h1-font-weight: 500;
+$h1-margin: 20px 0;
+
+// Base link
+$a-font-size: 16px;
+
+html {
+    height: 100%;
+}
+
+body {
+    font-size: $font-primary-size;
+    font-family: $font-primary;
+    background: #F9F9F9;
+}
+
+h1 {
+    font-size: $h1-font-size;
+    font-weight: $h1-font-weight;
+    text-align: center;
+    margin: $h1-margin;
+}
+
+a {
+    font-size: $a-font-size;
+}

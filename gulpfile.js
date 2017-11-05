@@ -39,7 +39,7 @@ gulp.task('sass', function() {
 });
 
 // Watch Sass
-gulp.task('sass:watch', function () {
+gulp.task('sass:watch', function() {
   gulp.watch('public/assets/sass/**/*.scss', ['sass']);
 });
 

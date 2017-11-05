@@ -1,5 +1,5 @@
 # Token Based Authentication
-> A simple Node REST API that authenticates users
+> A simple REST API that authenticates users
 
 ## Installation
 
