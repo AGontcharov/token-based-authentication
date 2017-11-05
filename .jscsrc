@@ -42,6 +42,7 @@
   "validateIndentation": 2,
 
   "excludeFiles": [
-    "karma.conf.js"
+    "karma.conf.js",
+    "server/routes.js"
   ]
 }
