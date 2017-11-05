@@ -3,9 +3,32 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>Authentication</title>
+
+		<link href="/assets/css/main.css" rel="stylesheet" type="text/css">
 	</head>
 
 	<body>
-		<h1>Token Based Authentication</h1>	
+		<h1>Token Based Authentication</h1>
+
+		<!-- Register form -->
+		<form action="/api/v1/users" method="post">
+			<div class="container">
+				
+				<!-- Username -->
+				<label for="username">Username:</label>
+				<input type="text" name="username" id="username" placeholder="Enter username" required="">
+
+				<!-- Password -->
+				<label for="pwd">Password:</label>
+				<input type="password" name="pwd" id="pwd" placeholder="Enter password" required="">
+
+				<!-- Confirm password -->
+				<label for="pwd-confirm">Confirm Password:</label>
+				<input type="password" name="pwd-confirm" id="pwd-confirm" placeholder="Confirm password" required>
+
+				<!-- Submit -->
+				<input type="submit" value="Register" required>
+			</div>
+		</form>
 	</body>
 </html>

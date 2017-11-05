@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var auth = require('./middleware/authentication.js');
 
 var router = express.Router();
 
@@ -16,7 +17,8 @@ router.get('/', function(req, res) {
 });
 
 router.post('/users', function(req, res) {
-
+  console.log(req.body);
+  
 });
 
 router.post('/login', function(req, res) {
