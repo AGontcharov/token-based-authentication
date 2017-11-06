@@ -25,7 +25,6 @@
     "allExcept": ["sameLine"]
   },
   "requirePaddingNewLinesAfterUseStrict": true,
-  "requirePaddingNewLineAfterVariableDeclaration": true,
   "requirePaddingNewLinesBeforeExport": true,
   "requirePaddingNewLinesBeforeLineComments": true,
   "requireParenthesesAroundIIFE": true,
@@ -43,6 +42,5 @@
 
   "excludeFiles": [
     "karma.conf.js",
-    "server/routes.js"
   ]
 }
