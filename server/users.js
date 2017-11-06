@@ -14,24 +14,29 @@ module.exports = {
     if (!req.body.username) return res.status(400).json({ success: false, message: 'Missing username' });
     if (!req.body.pwd) return res.status(400).json({ success: false, message: 'Missing password' });
 
-    // Hash the password with salt bcrypt
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(req.body.pwd, salt, function(err, hash) {
+    // Check if user already exists
+    db.query("SELECT username FROM Users where username=?", req.body.username, function(err, rows, fields) {
+      if (err) throw err;
 
-        // Create User
-        var args = [req.body.username, hash];
-        db.query("INSERT INTO Users (username, password) VALUES (?, ?)", args, function(err, rows, fields) {
+      if (rows.length) return res.status(409).json({ success: false, message: 'User already exists'})
 
-          // Check existing user - seems hacky
-          if (err.errno === 1062) return res.status(404).json({ success: false, message: 'User already exists' });
-          else throw err;
+      // Hash the password with salt bcrypt
+      bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(req.body.pwd, salt, function(err, hash) {
 
-          // Create token
-          var token = jwt.sign({ username: req.body.username }, key, { expiresIn: '10m' });
-          return res.status(201).json({ success: true, token: token });
+          // Create User
+          var args = [req.body.username, hash];
+          db.query("INSERT INTO Users (username, password) VALUES (?, ?)", args, function(err, rows, fields) {
+
+            if (err) throw err;
+
+            // Create token
+            var token = jwt.sign({ username: req.body.username }, key, { expiresIn: '10m' });
+            return res.status(201).json({ success: true, token: token });
+          });
         });
       });
-    });
+    })
   },
 
   authenticate: function(req, res) {

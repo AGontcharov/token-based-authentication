@@ -93,7 +93,7 @@ Success Response Content:
 }
 ```
 
-Error Response Codes: 400, 404
+Error Response Codes: 400, 409
 
 ### Authenticate User
 
