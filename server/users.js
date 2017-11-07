@@ -12,17 +12,17 @@ module.exports = {
   create: function(req, res) {
 
     if (!req.body.username) return res.status(400).json({ success: false, message: 'Missing username' });
-    if (!req.body.pwd) return res.status(400).json({ success: false, message: 'Missing password' });
+    if (!req.body.password) return res.status(400).json({ success: false, message: 'Missing password' });
 
     // Check if user already exists
     db.query("SELECT username FROM Users where username=?", req.body.username, function(err, rows, fields) {
       if (err) throw err;
 
-      if (rows.length) return res.status(409).json({ success: false, message: 'User already exists'})
+      if (rows.length) return res.status(409).json({ success: false, message: 'Username already exists' });
 
       // Hash the password with salt bcrypt
       bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(req.body.pwd, salt, function(err, hash) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
 
           // Create User
           var args = [req.body.username, hash];
@@ -36,13 +36,13 @@ module.exports = {
           });
         });
       });
-    })
+    });
   },
 
   authenticate: function(req, res) {
 
     if (!req.body.username) return res.status(400).json({ success: false, message: 'Missing username' });
-    if (!req.body.pwd) return res.status(400).json({ success: false, message: 'Missing password' });
+    if (!req.body.password) return res.status(400).json({ success: false, message: 'Missing password' });
 
     db.query("SELECT password FROM Users WHERE username=?", req.body.username, function(err, rows, fields) {
       if (err) throw err;
@@ -51,7 +51,7 @@ module.exports = {
       if (!rows.length) return res.status(404).json({ success: false, message: 'Username or password is incorrect' });
 
       // Compare user password and hash
-      bcrypt.compare(req.body.pwd, rows[0].password, function(err, result) {
+      bcrypt.compare(req.body.password, rows[0].password, function(err, result) {
         if (!result) return res.status(404).json({ success: false, message: 'Username or password is incorrect' });
 
         // Create token

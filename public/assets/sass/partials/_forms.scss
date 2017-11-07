@@ -8,6 +8,9 @@ $input-placeholder-padding: 5px;
 $submit-color: #4CAF50;
 $submit-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
+// Form error
+$form-error-padding: 5px 0;
+
 .container {
     width: 325px;
     display: block;
@@ -41,6 +44,12 @@ $submit-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     input[type=submit]:hover {
         box-shadow: $submit-box-shadow;
     }
+}
+
+.form-error {
+    padding: $form-error-padding;
+    text-align: center;
+    color: red;
 }
 
 .switch-forms {
