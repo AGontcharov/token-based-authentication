@@ -1,0 +1,59 @@
+<h1>Token Based Authentication</h1>
+
+<!-- Register form -->
+<form ng-show="vm.registerForm" name="registerForm" method="post" ng-submit="vm.register()">
+  <div class="container">
+      
+    <!-- Username -->
+    <label for="uname">Username:</label>
+    <input type="text" name="uname" id="uname" ng-model="vm.account.username" placeholder="Enter username" autofocus required>
+
+    <!-- Password -->
+    <label for="pwd">Password:</label>
+    <input type="password" name="pwd" id="pwd" ng-model="vm.account.password" placeholder="Enter password" required>
+
+    <!-- Confirm password -->
+    <label for="pwd-confirm">Confirm Password:</label>
+    <input type="password" name="pwd-confirm" id="pwd-confirm" ng-model="vm.account.passwordRepeat" placeholder="Confirm password" required>
+
+    <!-- Submit -->
+    <input type="submit" value="Register">
+
+    <!-- Submit feedback -->
+    <div class="form-error" ng-show="vm.error">
+      <span>Username already exists</span>
+    </div>
+
+    <!-- Switch forms -->
+    <div class="switch-forms">
+      <p>Already have an account? <a role="button" tabindex="0" ng-click="vm.switchTo('loginForm')">Sign in</a></p>
+    </div>
+  </div>
+</form>
+
+<!-- Login form -->
+<form ng-show="vm.loginForm" name="loginForm" method="post" ng-submit="vm.login()">
+  <div class="container">
+      
+    <!-- Username -->
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" ng-model="vm.credentials.username" placeholder="Enter username" required="">
+
+    <!-- Password -->
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" ng-model="vm.credentials.password" placeholder="Enter password" required="">
+
+    <!-- Submit -->
+    <input type="submit" value="Log in">
+
+    <!-- Submit feedback -->
+    <div class="form-error" ng-show="vm.error">
+      <span>Username or password is incorrect</span>
+    </div>
+
+    <!-- Switch forms -->
+    <div class="switch-forms">
+      <p>Don't have an account? <a role="button" tabindex="0" ng-click="vm.switchTo('registerForm')">Register</a></p>
+    </div>
+  </div>
+</form>
