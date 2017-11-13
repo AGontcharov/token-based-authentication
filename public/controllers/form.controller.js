@@ -3,9 +3,9 @@
 
   angular
     .module('app')
-    .controller('form', ['$location', 'userService', form]);
+    .controller('form', ['$location', 'userService', 'session', form]);
 
-  function form($location, userService) {
+  function form($location, userService, session) {
     var vm = this;
 
     vm.register = register;
@@ -17,7 +17,10 @@
       console.log('account', vm.account);
 
       userService.create(vm.account)
-        .then(function() { $location.path('/home'); })
+        .then(function() { 
+          $location.path('/home');
+          session.create(vm.account.username);
+        })
         .catch(function() { vm.error = true; });
     }
 
@@ -25,7 +28,10 @@
       console.log('credentials', vm.credentials);
 
       userService.authenticate(vm.credentials)
-        .then(function() { $location.path('/home'); })
+        .then(function() { 
+          $location.path('/home');
+          session.create(vm.credentials.username);
+        })
         .catch(function() { vm.error = true; });
     }
 
