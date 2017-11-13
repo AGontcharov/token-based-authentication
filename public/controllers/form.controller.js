@@ -14,23 +14,20 @@
     vm.registerForm = true;
 
     function register() {
-      console.log('account', vm.account);
-
       userService.create(vm.account)
-        .then(function() { 
+        .then(function(response) {
           $location.path('/home');
-          session.create(vm.account.username);
+          session.create(vm.account.username, response.token);
         })
         .catch(function() { vm.error = true; });
     }
 
     function login() {
-      console.log('credentials', vm.credentials);
-
       userService.authenticate(vm.credentials)
-        .then(function() { 
+        .then(function(response) {
+          console.log('response', response);
           $location.path('/home');
-          session.create(vm.credentials.username);
+          session.create(vm.credentials.username, response.token);
         })
         .catch(function() { vm.error = true; });
     }

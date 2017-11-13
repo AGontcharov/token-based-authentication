@@ -3,9 +3,10 @@
 
   angular
     .module('app', ['ngRoute'])
-    .config(['$routeProvider', '$locationProvider', config]);
+    .config(['$routeProvider', '$locationProvider', '$httpProvider', config])
+    .run(['$rootScope', 'session', run]);
 
-  function config($routeProvider, $locationProvider) {
+  function config($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/form.html',
@@ -20,6 +21,16 @@
       .otherwise({ redirectTo: '/' });
 
     $locationProvider.html5Mode(true);
+    $httpProvider.interceptors.push('authInterceptor');
+  }
+
+  function run($rootScope, session) {
+    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+      
+      if (!session) {
+
+      }
+    });
   }
 
 })();
