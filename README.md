@@ -79,7 +79,7 @@ Data Params:
 ```JSON
 {
   "username": "auth",
-  "pwd": "test123"
+  "password": "test123"
 }
 ```
 
@@ -88,40 +88,11 @@ Success Response Codes: 201
 Success Response Content:
 ```JSON
 {
-    "success": true,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgiLCJpYXQiOjE1MDk5NTQxNDksImV4cCI6MTUwOTk1NDc0OX0.o5uPFxW6GQWgMi7Sg-eWRFvFVnLZvEp_gmOpGFc6Yvc"
+    "success": true
 }
 ```
 
 Error Response Codes: 400, 409
-
-### Authenticate User
-
-URL: `api/v1/login`
-
-Method: POST
-
-URL Params: N/A
-
-Data Params: 
-```JSON
-{
-  "username": "auth",
-  "pwd": "test123"
-}
-```
-
-Success Response Codes: 200
-
-Success Response Content:
-```JSON
-{
-    "success": true,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgiLCJpYXQiOjE1MDk5NTQxNDksImV4cCI6MTUwOTk1NDc0OX0.o5uPFxW6GQWgMi7Sg-eWRFvFVnLZvEp_gmOpGFc6Yvc"
-}
-```
-
-Error Response Codes: 400, 404
 
 ### Get All Users
 
@@ -157,6 +128,54 @@ Success Response Content:
 ```
 
 Error Response Codes: 404
+
+### Authenticate User
+
+URL: `api/v1/login`
+
+Method: POST
+
+URL Params: N/A
+
+Data Params: 
+```JSON
+{
+  "username": "auth",
+  "password": "test123"
+}
+```
+
+Success Response Codes: 200
+
+Success Response Content:
+```JSON
+{
+    "success": true
+}
+```
+
+Error Response Codes: 400, 404
+
+### Get Protected
+
+URL: `api/v1/protected`
+
+Method: GET
+
+URL Params: N/A
+
+Data Params: N/A
+
+Success Response Codes: 200
+
+Success Response Content:
+```JSON
+{
+    "message:" "Accessing restricted"
+}
+```
+
+Error Response Codes: 401
 
 ## Testing
 
