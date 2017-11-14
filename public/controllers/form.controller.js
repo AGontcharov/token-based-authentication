@@ -17,7 +17,7 @@
       userService.create(vm.account)
         .then(function(response) {
           $location.path('/home');
-          session.create(vm.account.username, response.token);
+          session.create(vm.account.username);
         })
         .catch(function() { vm.error = true; });
     }
@@ -25,9 +25,8 @@
     function login() {
       userService.authenticate(vm.credentials)
         .then(function(response) {
-          console.log('response', response);
           $location.path('/home');
-          session.create(vm.credentials.username, response.token);
+          session.create(vm.credentials.username);
         })
         .catch(function() { vm.error = true; });
     }

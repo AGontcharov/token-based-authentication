@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app', ['ngRoute'])
+    .module('app', ['ngRoute', 'ngCookies'])
     .config(['$routeProvider', '$locationProvider', '$httpProvider', config])
     .run(['$rootScope', 'session', run]);
 
@@ -26,10 +26,7 @@
 
   function run($rootScope, session) {
     $rootScope.$on('$routeChangeStart', function(event, next, current) {
-      
-      if (!session) {
 
-      }
     });
   }
 

@@ -3,18 +3,21 @@
 
   angular
     .module('app')
-    .factory('authInterceptor', ['session', '$location', '$injector', '$q', authInterceptor]);
+    .factory('authInterceptor', ['$cookies', '$location', '$q', authInterceptor]);
 
-  function authInterceptor(session, $location, $injector, $q) {
+  function authInterceptor($cookies, $location, $q) {
 
     return {
 
       'request': function(config) {
 
-        console.log('session', session);
+        config.headers = config.headers || {};
 
-        if (session) {
-          config.headers.Authorization = 'Bearer ' + session.token;
+        var token = $cookies.get('access-token');
+        console.log('token:', token);
+
+        if (token) {
+          config.headers.Authorization = 'Bearer ' + token;
         }
         return config;
       },
@@ -22,7 +25,7 @@
       'responseError': function(response) {
 
         if (response.status === 401 || response.status === 403) {
-          $location.path('/')
+          $location.path('/');
         }
         return $q.reject(response);
       }

@@ -19,7 +19,7 @@ router.get('/users', users.get);
 router.post('/users', users.create);
 router.post('/login', users.authenticate);
 
-router.post('/protected', auth, function(req, res) {
+router.get('/protected', auth, function(req, res) {
   return res.status(200).json({ message: 'Accessing restricted' });
 });
 

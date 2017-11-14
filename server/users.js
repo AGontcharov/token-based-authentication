@@ -32,7 +32,8 @@ module.exports = {
 
             // Create token
             var token = jwt.sign({ username: req.body.username }, key, { expiresIn: '10m' });
-            return res.status(201).json({ success: true, token: token });
+            res.cookie('access-token', token);
+            return res.status(201).json({ success: true });
           });
         });
       });
@@ -55,8 +56,9 @@ module.exports = {
         if (!result) return res.status(404).json({ success: false, message: 'Username or password is incorrect' });
 
         // Create token
-        var token = jwt.sign({ username: req.body.username }, key, { expiresIn: '10m' });
-        return res.status(200).json({ success: true, token: token });
+        var token = jwt.sign({ username: req.body.username }, key, { expiresIn: '10m' });        
+        res.cookie('access-token', token);
+        return res.status(200).json({ success: true });
       });
     });
   },
@@ -67,7 +69,6 @@ module.exports = {
 
       // No users found
       if (!rows.length) return res.status(404).json({ sucess: false, message: 'No users found' });
-
       return res.status(200).json({ success: true, users: rows });
     });
   }

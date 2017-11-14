@@ -7,14 +7,12 @@
 
   function session() {
 
-    this.create = function(username, token) {
+    this.create = function(username) {
       this.username = username;
-      this.token = token;
     };
 
     this.destroy = function() {
       this.username = null;
-      this.token = null;
     };
 
     return this;
