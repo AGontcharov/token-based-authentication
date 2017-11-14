@@ -36,7 +36,7 @@
     }
 
     function successHandle(response) {
-      return response;
+      return response.data;
     }
 
     function errorHandle(response) {

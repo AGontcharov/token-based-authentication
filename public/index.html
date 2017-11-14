@@ -13,10 +13,11 @@
 
 		<div ng-view></div>
 
-	  <!-- Angular -->
-	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
-	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.min.js"></script>
-	  <script type="text/javascript" src="app.module.js"></script>
+	 <!-- Angular -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.min.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-cookies.min.js"></script>
+	 <script type="text/javascript" src="app.module.js"></script>
 
 		<!-- Controller -->
 		<script type="text/javascript" src="controllers/form.controller.js"></script>
@@ -25,5 +26,6 @@
 		<!-- Service -->
 		<script type="text/javascript" src="services/user.service.js"></script>
 		<script type="text/javascript" src="services/session.service.js"></script>
+		<script type="text/javascript" src="services/authInterceptor.service.js"></script>
 	</body>
 </html>

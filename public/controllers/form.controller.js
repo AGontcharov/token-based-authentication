@@ -14,8 +14,6 @@
     vm.registerForm = true;
 
     function register() {
-      console.log('account', vm.account);
-
       userService.create(vm.account)
         .then(function() { 
           $location.path('/home');
@@ -25,8 +23,6 @@
     }
 
     function login() {
-      console.log('credentials', vm.credentials);
-
       userService.authenticate(vm.credentials)
         .then(function() { 
           $location.path('/home');
