@@ -3,24 +3,33 @@
 
   angular
     .module('app')
-    .factory('authentication', ['session', '$cookies', authentication]);
+    .factory('authentication', ['session', '$cookies', 'jwtHelper', authentication]);
 
-  function authentication(session, $cookies) {
+  function authentication(session, $cookies, jwtHelper) {
     var service = {
       createSession: createSession,
-      refreshSession: refreshSession
+      refreshSession: refreshSession,
+      logout: logout
     };
 
+    return service;
+
     function createSession(user) {
-      session.create(user);
-      $cookies.put('user', JSON.stringify(user));
+      session.create(user.username);
     }
 
     function refreshSession() {
-      var userSession = JSON.parse($cookies.get('user'));
-      if (userSession) session.create(userSession);
+      var token = $cookies.get('access-token');
+
+      if (token) {
+        var tokenPayload = jwtHelper.decodeToken(token);
+        session.create(tokenPayload.username)
+      }
     }
 
-    return service;
+    function logout() {
+      $cookies.remove('access-token');
+      session.destroy();
+    }
   }
 })();

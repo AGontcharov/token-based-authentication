@@ -19,7 +19,8 @@
           $location.path('/home');
           authentication.createSession(vm.account);
         })
-        .catch(function() { vm.error = true; });
+        .catch(function() { vm.error = true; })
+        .finally(function() { vm.account.password = ''; });
     }
 
     function login() {
@@ -28,7 +29,8 @@
           $location.path('/home');
           authentication.createSession(vm.credentials);
         })
-        .catch(function() { vm.error = true; });
+        .catch(function() { vm.error = true; })
+        .finally(function() { vm.credentials.password = ''; });
     }
 
     function switchTo(form) {

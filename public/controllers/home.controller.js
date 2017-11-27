@@ -8,12 +8,12 @@
   function home(session, userService) {
     var vm = this;
 
-    vm.getProtected = getProtected;
+    vm.getRestricted = getRestricted;
 
     activate();
 
-    function getProtected() {
-      userService.getProtected()
+    function getRestricted() {
+      userService.getRestricted()
         .then( function(response) { vm.secret = response.message; }).
         catch( function() {} );
     }

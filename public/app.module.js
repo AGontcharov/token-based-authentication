@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app', ['ngRoute', 'ngCookies'])
+    .module('app', ['ngRoute', 'ngCookies', 'angular-jwt'])
     .config(['$routeProvider', '$locationProvider', '$httpProvider', config])
     .run(['$rootScope', 'session', 'authentication', run]);
 
@@ -16,7 +16,22 @@
       .when('/home', {
         templateUrl: 'views/home.html',
         controller: 'home',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+
+          // How should I be storing/checking login state?
+          loggedIn: function($q, $cookies, $location) {
+            var deferred = $q.defer();
+
+            if ($cookies.get('access-token')) deferred.resolve();
+            else {
+              deferred.reject();
+              $location.path('/');
+            }
+
+            return deferred.promise;
+          }
+        }
       })
       .otherwise({ redirectTo: '/' });
 

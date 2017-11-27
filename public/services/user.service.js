@@ -13,7 +13,7 @@
       create: create,
       authenticate: authenticate,
       getAll: getAll,
-      getProtected: getProtected
+      getRestricted: getRestricted
     };
 
     return service;
@@ -36,8 +36,8 @@
         .catch(errorHandle);
     }
 
-    function getProtected() {
-      return $http.get(BASE_URL + '/protected')
+    function getRestricted() {
+      return $http.get(BASE_URL + '/restricted')
         .then(successHandle)
         .catch(errorHandle);
     }
