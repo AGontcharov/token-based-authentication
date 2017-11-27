@@ -9,6 +9,7 @@ const saltRounds = 10;
 
 module.exports = {
 
+  // Create user
   create: function(req, res) {
 
     if (!req.body.username) return res.status(400).json({ success: false, message: 'Missing username' });
@@ -40,6 +41,7 @@ module.exports = {
     });
   },
 
+  // Authenticate user
   authenticate: function(req, res) {
 
     if (!req.body.username) return res.status(400).json({ success: false, message: 'Missing username' });
@@ -56,13 +58,14 @@ module.exports = {
         if (!result) return res.status(404).json({ success: false, message: 'Username or password is incorrect' });
 
         // Create token
-        var token = jwt.sign({ username: req.body.username }, key, { expiresIn: '10m' });        
+        var token = jwt.sign({ username: req.body.username }, key, { expiresIn: '10m' });
         res.cookie('access-token', token);
         return res.status(200).json({ success: true });
       });
     });
   },
 
+  // Return all users
   get: function(req, res) {
     db.query("SELECT id, username FROM Users", function(err, rows, fields) {
       if (err) throw err;

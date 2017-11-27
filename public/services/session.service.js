@@ -7,8 +7,8 @@
 
   function session() {
 
-    this.create = function(username) {
-      this.username = username;
+    this.create = function(user) {
+      this.username = user.username;
     };
 
     this.destroy = function() {

@@ -11,14 +11,10 @@
 
       'request': function(config) {
 
+        var token = $cookies.get('access-token');
         config.headers = config.headers || {};
 
-        var token = $cookies.get('access-token');
-        console.log('token:', token);
-
-        if (token) {
-          config.headers.Authorization = 'Bearer ' + token;
-        }
+        if (token) config.headers.Authorization = 'Bearer ' + token;
         return config;
       },
 

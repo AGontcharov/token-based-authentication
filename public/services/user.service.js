@@ -12,7 +12,8 @@
     var service = {
       create: create,
       authenticate: authenticate,
-      getAll: getAll
+      getAll: getAll,
+      getProtected: getProtected
     };
 
     return service;
@@ -31,6 +32,12 @@
 
     function getAll() {
       return $http.get(BASE_URL + '/users')
+        .then(successHandle)
+        .catch(errorHandle);
+    }
+
+    function getProtected() {
+      return $http.get(BASE_URL + '/protected')
         .then(successHandle)
         .catch(errorHandle);
     }

@@ -4,7 +4,7 @@
   angular
     .module('app', ['ngRoute', 'ngCookies'])
     .config(['$routeProvider', '$locationProvider', '$httpProvider', config])
-    .run(['$rootScope', 'session', run]);
+    .run(['$rootScope', 'session', 'authentication', run]);
 
   function config($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -24,9 +24,11 @@
     $httpProvider.interceptors.push('authInterceptor');
   }
 
-  function run($rootScope, session) {
+  function run($rootScope, session, authentication) {
     $rootScope.$on('$routeChangeStart', function(event, next, current) {
 
+      // Refresh user session
+      if (!session.username) authentication.refreshSession();
     });
   }
 
