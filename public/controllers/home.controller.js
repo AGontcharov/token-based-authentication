@@ -3,14 +3,20 @@
 
   angular
     .module('app')
-    .controller('home', ['session', 'userService', home]);
+    .controller('home', ['$location', '$cookies', 'jwtHelper', 'session', 'userService', 'authentication', home]);
 
-  function home(session, userService) {
+  function home($location, $cookies, jwtHelper, session, userService, authentication) {
     var vm = this;
 
     vm.getRestricted = getRestricted;
+    vm.logout = logout;
+    vm.isActive = isActive;
 
     activate();
+
+    function isActive(viewLocation) {
+      return viewLocation === $location.path();
+    }
 
     function getRestricted() {
       userService.getRestricted()
@@ -18,8 +24,17 @@
         catch( function() {} );
     }
 
+    function logout() {
+      authentication.logout();
+      $location.path('/');
+    }
+
     function activate() {
+      var token = $cookies.get('access-token');
+
       vm.username = session.username;
+      vm.token = token;
+      vm.payload = JSON.stringify(jwtHelper.decodeToken(token), null, 4);
     }
   }
 })();

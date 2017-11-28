@@ -1,0 +1,33 @@
+.navbar {
+	ul {
+		overflow: hidden;
+		background: #333;
+
+		li {
+			float: left;
+			list-style: none;
+
+			a {
+				display: block;
+				padding: 16px;
+				text-decoration: none;
+				color: #f2f2f2;
+				font-size: 17px;
+			}
+
+			a:hover {
+				background-color: #ddd;
+		    	color: black;
+			}
+		}
+
+		li:last-child {
+			float: right;
+		}
+	}
+}
+
+.active {
+	background-color: #4CAF50;
+	color: white;
+}

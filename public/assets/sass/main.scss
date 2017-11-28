@@ -1,3 +1,20 @@
-@import 'partials/reset';
-@import 'partials/base';
-@import 'partials/forms'
+// Helpers
+@import 'helpers/_variables';
+
+// Base
+@import 'base/_reset';
+
+// Partials
+@import 'partials/_base';
+
+// Layouts
+@import 'layouts/_grid';
+@import 'layouts/_headers';
+@import 'layouts/_forms';
+
+// Components
+@import 'components/_navbar';
+@import 'components/_buttons';
+
+// Pages
+@import 'pages/_home';

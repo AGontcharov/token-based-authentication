@@ -23,6 +23,7 @@ gulp.task('lint', function() {
   return gulp.src([
     'public/**/*.js',
     'server/**/*.js',
+    '!public/libraries/**/*.js',
     '*.js'
   ])
   .pipe(jshint(jshintConfig))

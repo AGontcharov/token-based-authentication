@@ -1,4 +1,31 @@
-<h1>Home Page</h1>
-<p>Welcome {{::vm.username}}</p>
-<button ng-click="vm.getRestricted()">Get Secret</button>
-<p>{{vm.secret}}</p>
+<div class="navbar">
+  <ul>
+    <li><a href="/home" ng-class="{active: vm.isActive('/home')}">Home</a></li>
+    <li><a href ng-click="vm.logout()">Logout</a></li>
+  </ul>
+</div>
+
+<h1>Home</h1>
+
+<div class="row">
+  <div class="col-6">
+
+    <!-- Encoded Token -->
+    <p>Encoded Token:</p>
+    <div class="wrapper">
+      <p style="word-break: break-all;">{{::vm.token}}</p>
+    </div>
+    
+    <!-- Restricted message -->
+    <button class="button-blue" ng-click="vm.getRestricted()">Get Secret</button>
+    <p class="secret">{{::vm.secret}}</p>
+  </div>
+  
+  <!-- Token payload -->
+  <div class="col-6">
+    <p>Payload Data:</p>
+    <div class="wrapper">
+      <pre>{{::vm.payload}}</pre>
+    </div>
+  </div>
+</div>

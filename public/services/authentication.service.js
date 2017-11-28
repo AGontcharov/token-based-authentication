@@ -23,7 +23,7 @@
 
       if (token) {
         var tokenPayload = jwtHelper.decodeToken(token);
-        session.create(tokenPayload.username)
+        session.create(tokenPayload.username);
       }
     }
 

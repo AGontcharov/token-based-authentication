@@ -1,0 +1,18 @@
+.button {
+  display: inline-block;
+  padding: 14px 30px;
+  margin: $button-margin-vertical;
+  font-size: $font-primary-size;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button-blue {
+  @extend .button;
+  background: #008CBA;
+  color: white;
+}
+
+.button-blue:hover {
+  background: #006080;
+}

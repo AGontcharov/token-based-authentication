@@ -4,7 +4,7 @@
   angular
     .module('app', ['ngRoute', 'ngCookies', 'angular-jwt'])
     .config(['$routeProvider', '$locationProvider', '$httpProvider', config])
-    .run(['$rootScope', 'session', 'authentication', run]);
+    .run(['$rootScope', '$location', 'session', 'authentication', run]);
 
   function config($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -20,17 +20,14 @@
         resolve: {
 
           // How should I be storing/checking login state?
-          loggedIn: function($q, $cookies, $location) {
+          loggedIn: ['$q', '$cookies', function($q, $cookies) {
             var deferred = $q.defer();
 
             if ($cookies.get('access-token')) deferred.resolve();
-            else {
-              deferred.reject();
-              $location.path('/');
-            }
+            else deferred.reject('Unathorized');
 
             return deferred.promise;
-          }
+          }]
         }
       })
       .otherwise({ redirectTo: '/' });
@@ -39,12 +36,19 @@
     $httpProvider.interceptors.push('authInterceptor');
   }
 
-  function run($rootScope, session, authentication) {
+  function run($rootScope, $location, session, authentication) {
+
+    // On route start
     $rootScope.$on('$routeChangeStart', function(event, next, current) {
 
       // Refresh user session
       if (!session.username) authentication.refreshSession();
     });
-  }
 
+    // Check route instantce errors here => Unathorized, Forbidden, 404, w/e
+    $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
+      console.log(rejection);
+      $location.path('/');
+    });
+  }
 })();
